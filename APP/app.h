@@ -1,7 +1,7 @@
 #ifndef  _APP_H_ 
 #define _APP_H_
-#include "../HAL/keypad.h"
-#include "../HAL/lcd.h"
+#include "../HAL/KEYPAD/keypad.h"
+#include "../HAL/LCD/lcd.h"
 #include <stdint.h>
 #include <util/delay.h>
 #include <string.h>

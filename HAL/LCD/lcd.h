@@ -2,7 +2,7 @@
 #define _LCD_H_
 
 
-#include "../MCAL/GPIO/MCAL_GPIO.h"
+#include "../../MCAL/GPIO/MCAL_GPIO.h"
 
 #define H_LCD_RS 		2
 #define H_LCD_RW		1
