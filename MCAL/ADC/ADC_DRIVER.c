@@ -7,7 +7,6 @@
 
 #define NULLPTR '\0'
 #include "STD.h"
-//#include "std_macros.h"
 #include "MCAL_MACROUS.h"
 #include "ADC_REG.h"
 #include "ADC_DRIVER.h"
