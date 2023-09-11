@@ -83,6 +83,7 @@
 #define MUX2_BIT 2
 #define MUX3_BIT 3
 #define MUX4_BIT 4
+
 /*
 ************** UART_REG ***************
 */
