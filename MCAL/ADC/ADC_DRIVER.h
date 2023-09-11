@@ -5,7 +5,10 @@
  *  Author: Rawan
  */ 
 
-#include "STD.h"
+#include "../STD.h"
+#include "../MCAL_MACROUS.h"
+#include "../MCAL_REGS.h"
+
 #ifndef ADC_DRIVER_H_
 #define ADC_DRIVER_H_
 
