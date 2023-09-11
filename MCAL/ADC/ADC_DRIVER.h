@@ -8,7 +8,7 @@
 
 #ifndef ADC_DRIVER_H_
 #define ADC_DRIVER_H_
-
+#include "STD.h"
 typedef enum
 {
 	channel_0 ,
