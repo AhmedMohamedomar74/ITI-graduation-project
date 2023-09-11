@@ -6,11 +6,7 @@
  */ 
 
 #define NULLPTR '\0'
-#include "STD.h"
-#include "MCAL_MACROUS.h"
-#include "ADC_REG.h"
 #include "ADC_DRIVER.h"
-#include "../MCAL_MACROUS.h"
 
 
 void ADC_void_init(u8 voltage,u8 prescaler)

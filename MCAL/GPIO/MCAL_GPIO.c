@@ -29,7 +29,7 @@ void gpio_pin_direction_intialization(const pin_config_t * _pin_config ){
             break;
     }}
     
-void gpio_pin_write_logic(const pin_config_t * _pin_config ,uint8_t logic){
+void gpio_pin_write_logic(const pin_config_t * _pin_config ,u8 logic){
          switch(logic){
             case GPIO_HIGH:
             switch(_pin_config->port){
@@ -80,7 +80,7 @@ void gpio_pin_direction_status(const pin_config_t * _pin_config ,dierction_t * c
             }
 }
 
-logic_t gpio_pin_read_logic(const pin_config_t *_pin_config ,uint8_t * copy_u8logic){
+logic_t gpio_pin_read_logic(const pin_config_t *_pin_config ,u8 * copy_u8logic){
        switch(_pin_config->port){
                 case GPIO_PORTAID:
                 return read_BIT(PINA_PTR,_pin_config->pin) ;
@@ -124,7 +124,7 @@ void gpio_pin_toggle(const pin_config_t * _pin_config ){
 *************PORT CONFIGRATION *****************
 */
 
-void gpio_PORT_direction_intialization(port_index_t copy_portin ,uint8_t copy_direction ){
+void gpio_PORT_direction_intialization(port_index_t copy_portin ,u8 copy_direction ){
     switch(copy_portin){
                 case GPIO_PORTAID:_PTRDDRA =copy_direction ;
                 break;
@@ -138,7 +138,7 @@ void gpio_PORT_direction_intialization(port_index_t copy_portin ,uint8_t copy_di
             }
 }
 
-void gpio_PORT_write_value(port_index_t copy_portin ,uint8_t copy_logic ){
+void gpio_PORT_write_value(port_index_t copy_portin ,u8 copy_logic ){
          switch(copy_portin){
                 case GPIO_PORTAID:ptr_PORTA=copy_logic;
                 break;
@@ -151,7 +151,7 @@ void gpio_PORT_write_value(port_index_t copy_portin ,uint8_t copy_logic ){
 
             }
 }
-void gpio_PORT_read_value(port_index_t copy_portin ,uint8_t * copy_logic ){
+void gpio_PORT_read_value(port_index_t copy_portin ,u8 * copy_logic ){
     switch(copy_portin){
                 case GPIO_PORTAID:* copy_logic = ptr_PORTA;
                 break;

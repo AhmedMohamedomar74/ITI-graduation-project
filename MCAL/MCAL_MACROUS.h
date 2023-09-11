@@ -3,16 +3,15 @@
 /*
 ************** INCLUDES *************************
 */
-#include <stdint.h>
-
+#include "STD.h"
 /*
 ************* MACROUS DEFINATION ******************
 */
-#define BIT_MASK (uint8_t) 1
+#define BIT_MASK (u8) 1
 /* 
 ***********************MACRO Function Defination***********************
  */
-#define HWREG(_x)  *((volatile uint8_t*)_x)
+#define HWREG(_x)  *((volatile u8*)_x)
 /* Set a certain bit in any register */
 #define SET_BIT(REG,BIT) (REG |= (1<<BIT))
 /* Clear a certain bit in any register */

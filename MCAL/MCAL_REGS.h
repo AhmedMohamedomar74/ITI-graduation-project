@@ -28,24 +28,31 @@
 /*
 *************** PORT_NAMES **************
 */
-#define ptr_PORTA * ((volatile uint8_t*)PORTA_BASE)
-#define PORTB_Ptr  *((volatile uint8_t*)PORTB_BASE)
-#define PORTC_Ptr  *((volatile uint8_t*)PORTC_BASE)
-#define PORTD_Ptr * ((volatile uint8_t*)PORTD_BASE)
+#define ptr_PORTA * ((volatile u8*)PORTA_BASE)
+#define PORTB_Ptr  *((volatile u8*)PORTB_BASE)
+#define PORTC_Ptr  *((volatile u8*)PORTC_BASE)
+#define PORTD_Ptr * ((volatile u8*)PORTD_BASE)
 /*
 *************** PORT_DIRECTION ***************
 */
-#define _PTRDDRA        *((volatile uint8_t*)DDRA_BASE)
-#define _PTRDDRB       *((volatile uint8_t*)DDRB_BASE)
-#define _PTRDDRC        *((volatile uint8_t*)DDRC_BASE)
-#define _PTRDDRD        *((volatile uint8_t*)DDRD_BASE)
+#define _PTRDDRA        *((volatile u8*)DDRA_BASE)
+#define _PTRDDRB       *((volatile u8*)DDRB_BASE)
+#define _PTRDDRC        *((volatile u8*)DDRC_BASE)
+#define _PTRDDRD        *((volatile u8*)DDRD_BASE)
 /*
 ************** PORT_PINS ***************
 */
-#define PINA_PTR        *((volatile uint8_t*)PINA_BASE)
-#define PINB_PTR        *((volatile uint8_t*)PINB_BASE)
-#define PINC_PTR        *((volatile uint8_t*)PINC_BASE)
-#define PIND_PTR        *((volatile uint8_t*)PIND_BASE)
-
+#define PINA_PTR        *((volatile u8*)PINA_BASE)
+#define PINB_PTR        *((volatile u8*)PINB_BASE)
+#define PINC_PTR        *((volatile u8*)PINC_BASE)
+#define PIND_PTR        *((volatile u8*)PIND_BASE)
+/*
+************** ADC_REG ***************
+*/
+#define  ADMUX_REG       (*((volatile u8*)0x27))
+#define ADCSRA_REG       (*((volatile u8*)0x26))
+#define  SFIOR_REG       (*((volatile u8*)0x50))
+#define   ADCH_REG       (*((volatile u16*)0x25))
+#define   ADCL_REG       (*((volatile u16*)0x24))
 
 #endif
