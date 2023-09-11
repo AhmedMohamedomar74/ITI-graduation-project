@@ -1,5 +1,5 @@
 //#include "app.h"
-#include "../MCAL/ADC/ADC_DRIVER.h"
+#include "../MCAL/UART/UART.h"
 int main(){
 /*   intialize the system
 app_init();
@@ -10,10 +10,12 @@ while(1)
     run_program();
  }
  return 0;*/  
-   ADC_void_init(V_AREF,PRESCALER_2);
-   ADC_void_enable();
-   ADC_void_startConversion(channel_0);
-   
+  UART_void_Init(9600);
+  while (1)
+  {
+    UART_void_SendData(1);
+  }
+  
 }
 
 

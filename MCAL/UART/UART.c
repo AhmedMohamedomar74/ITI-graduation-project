@@ -1,7 +1,6 @@
 /*************** INCLUDES **************************/
 
-#include "Data_Types.h"
-#include "MCAL_MACROUS.h"
+
 #include "UART.h"
 
 /*==============================================================================================================================================
@@ -23,13 +22,18 @@
 	UBRRL=(u8)UBRR;
 	
 	/*Enable USART Sender & Receiver*/
-	SET_BIT(UCSRB,TXEN);
-	SET_BIT(UCSRB,RXEN);
+	//SET_BIT(UCSRB,TXEN);
+	SET_BIT(UCSRB,TXEN_BIT);
+	//SET_BIT(UCSRB,RXEN);
+	SET_BIT(UCSRB,RXEN_BIT);
 	
 	/*8 bit data to be sent,1 stop bit and no parity bits*/
-	SET_BIT(UCSRC,URSEL);
-	SET_BIT(UCSRC,UCSZ0);
-	SET_BIT(UCSRC,UCSZ1);
+	//SET_BIT(UCSRC,URSEL);
+	SET_BIT(UCSRC,URSEL_BIT);
+	//SET_BIT(UCSRC,UCSZ0);
+	SET_BIT(UCSRC,UCSZ0_BIT);
+	//SET_BIT(UCSRC,UCSZ1);
+	SET_BIT(UCSRC,UCSZ1_BIT);
 	
 	
  }/*end of UART_void_Init*/
@@ -43,9 +47,10 @@
  void UART_void_SendData(u8 data)
  {
 	/*Wait for UDR transmit buffer to be empty*/
-	while(read_BIT(UCSRA,UDRE)==0);
+	//while(read_BIT(UCSRA,UDRE)==0);
+	while(read_BIT(UCSRA,UDRE_BIT)==0);
 	/*Put data to UDR transmit buffer transmit*/
-	UDR=data ;
+	UDR_R=data ;
  
  }/*end of UART_void_SendData*/
 
@@ -58,9 +63,10 @@
  u8 UART_u8_ReceiveData(void)
  {
 	/*Wait for UDR receive buffer to be filled with data*/
-	while(read_BIT(UCSRA,RXC)==0);
+	//while(read_BIT(UCSRA,RXC)==0)
+	while(read_BIT(UCSRA,RXC_BIT)==0);
 	/*Receive data from UDR receive buffer*/
-	return UDR ;
+	return UDR_R ;
 	 
  }/*end of UART_u8_ReceiveData*/
 
