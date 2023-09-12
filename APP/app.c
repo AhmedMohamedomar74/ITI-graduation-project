@@ -1,15 +1,15 @@
 #include "app.h"
 extern keypad_t keypad_1;
 
-uint8_t key_val = 255;       // value of key you press
-uint8_t flagin = 0;          /// to check if passward correct it's value will be 1 else the passward is wrong
-uint8_t check_pass[20];      // passward the user enter
-uint8_t number_digit = 0;    // to know how many number user enter
-uint8_t index_passward = 0;  ////// using as index of check_password array
-uint8_t number_of_users = 2; // to know how many user in the system
-uint8_t index_of_user = 0;   // to know which user in system that enter the password
+u8 key_val = 255;       // value of key you press
+u8 flagin = 0;          /// to check if passward correct it's value will be 1 else the passward is wrong
+u8 check_pass[20];      // passward the user enter
+u8 number_digit = 0;    // to know how many number user enter
+u8 index_passward = 0;  ////// using as index of check_password array
+u8 number_of_users = 2; // to know how many user in the system
+u8 index_of_user = 0;   // to know which user in system that enter the password
 
-uint8_t i = 0;            /// to check if i enter wrong passward more than 3 times or not
+u8 i = 0;            /// to check if i enter wrong passward more than 3 times or not
 #define password_length 4 ////fixed length to the passward
 user_t users[2];          /// store array of users to store all data in it
 
@@ -44,19 +44,19 @@ void app_init(void)
 /************ API*************
  *check if passward the user set it founded in the system or not
  */
-uint8_t Cheack_Password(uint8_t x)
+u8 Cheack_Password(u8 x)
 {
     /* if passward less than or more than right length of passward retrun false */
     if ((number_digit<4) | (number_digit> 4))
         return 0;
     /*intialize variable ret to know hoe many numbers in password same if all password same will return true*/
-    uint8_t ret = 0;
+    u8 ret = 0;
     /*will looping to compare with all users in my system */
-    for (uint8_t n = 0; n < number_of_users; n++)
+    for (u8 n = 0; n < number_of_users; n++)
     {
         ret = 0;
         /*will looping to check every element of user[n] paswword and the password that entered in the screen */
-        for (uint8_t counter = 0; counter < x - 1; counter++)
+        for (u8 counter = 0; counter < x - 1; counter++)
         {
             /*if element the same increment ret by one */
             if (users[n].password[counter] == check_pass[counter])

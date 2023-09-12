@@ -3,7 +3,7 @@
 #include <string.h>
 #include "lcd.h"
 
-void HLCD_send_command(uint8_t cope_h_command ){
+void HLCD_send_command(u8 cope_h_command ){
 	
 	CLEAR_BIT(PORT_CNL,H_LCD_RS);
 	_delay_ms(10);
@@ -28,7 +28,7 @@ void HLCD_INIT(void){
 	_delay_ms(10);
 	HLCD_send_command(_LCD_CLEAR );
 }
-void HLCD_send_DATA(uint8_t cope_h_data){
+void HLCD_send_DATA(u8 cope_h_data){
 	
 		SET_BIT(PORT_CNL,H_LCD_RS);
 		CLEAR_BIT(PORT_CNL,H_LCD_RW);
@@ -43,7 +43,7 @@ void HLCD_voidCLRScreen(void){
 		HLCD_send_command(0x01);
 		_delay_us(40);
 }
-void HLCD_voidGoToXy (uint8_t Copy_u8XPosition, uint8_t Copy_u8YPosition){
+void HLCD_voidGoToXy (u8 Copy_u8XPosition, u8 Copy_u8YPosition){
 	_delay_us(40);
 	
 	switch(Copy_u8YPosition)
@@ -59,14 +59,14 @@ void HLCD_voidGoToXy (uint8_t Copy_u8XPosition, uint8_t Copy_u8YPosition){
 	}
 	
 
-void HLCD_voidSendString (const uint8_t *copy_ps8str){
-	uint8_t i=0;
+void HLCD_voidSendString (const u8 *copy_ps8str){
+	u8 i=0;
 	while(copy_ps8str[i]!='\0'){
 		HLCD_send_DATA(copy_ps8str[i]);
 		i++;
 	}
 }
-void LCD_send_string_pos(uint8_t * copy_ps8str,uint8_t  Copy_u8XPosition, uint8_t  Copy_u8YPosition){
+void LCD_send_string_pos(u8 * copy_ps8str,u8  Copy_u8XPosition, u8  Copy_u8YPosition){
 	_delay_us(40);
 	switch(Copy_u8YPosition)
 	{
@@ -77,15 +77,15 @@ void LCD_send_string_pos(uint8_t * copy_ps8str,uint8_t  Copy_u8XPosition, uint8_
 				HLCD_send_command(0xC0+Copy_u8XPosition);	
 				break;
 	}
-	uint8_t i=0;
+	u8 i=0;
 	while(copy_ps8str[i]!='\0'){
 		HLCD_send_DATA(copy_ps8str[i]);
 		i++;
 	}
 }
-void LCD_Send_Number(uint8_t num)
+void LCD_Send_Number(u8 num)
 {
-	 uint8_t arr[10],i=0,j=0;
+	 u8 arr[10],i=0,j=0;
 		   if(num == 0)
 		   {
 			   HLCD_send_DATA('0');
@@ -104,16 +104,16 @@ void LCD_Send_Number(uint8_t num)
 			   }
 		   }
 }
-void LCD_Send_Number_Pos(uint8_t num,uint8_t row,uint8_t column)
+void LCD_Send_Number_Pos(u8 num,u8 row,u8 column)
 {
 	HLCD_voidGoToXy(row,column);
 	LCD_Send_Number(num);
 }
 /*void HLCD_voidSendNumber(uint32_t Copy_s32Number){
-	uint8_t * str; 
+	u8 * str; 
 	 memset((char *)str, '\0', 3);
 	 sprintf(str, "%i", Copy_s32Number);
-	 uint8_t i=0;
+	 u8 i=0;
 	 while(str[i]!='\0'){
 		HLCD_send_DATA(str[i]);
 		i++;

@@ -39,14 +39,14 @@
 #define ROW1 0
 #define ROW2 1
 /*********************/
-void HLCD_send_command(uint8_t cope_h_command );
+void HLCD_send_command(u8 cope_h_command );
 void HLCD_INIT(void);
-void HLCD_send_DATA(uint8_t cope_h_data);
+void HLCD_send_DATA(u8 cope_h_data);
 void HLCD_voidCLRScreen(void);
-void HLCD_voidGoToXy (uint8_t  Copy_u8XPosition, uint8_t  Copy_u8YPosition); 
-void HLCD_voidSendString (const uint8_t * copy_ps8str); //send string
-void HLCD_voidSendNumber(uint32_t Copy_s32Number);
-void LCD_send_string_pos(uint8_t * copy_ps8str,uint8_t  Copy_u8XPosition, uint8_t  Copy_u8YPosition);
-void LCD_Send_Number(uint8_t num);
-void LCD_Send_Number_Pos(uint8_t num,uint8_t row,uint8_t column);
+void HLCD_voidGoToXy (u8  Copy_u8XPosition, u8  Copy_u8YPosition); 
+void HLCD_voidSendString (const u8 * copy_ps8str); //send string
+void HLCD_voidSendNumber(u32 Copy_s32Number);
+void LCD_send_string_pos(u8 * copy_ps8str,u8  Copy_u8XPosition, u8  Copy_u8YPosition);
+void LCD_Send_Number(u8 num);
+void LCD_Send_Number_Pos(u8 num,u8 row,u8 column);
 #endif /* HAL_LCD_HLCD_CNF_H_ */
