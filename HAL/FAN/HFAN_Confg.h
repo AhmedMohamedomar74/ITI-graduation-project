@@ -15,9 +15,9 @@
 #define FAN_THREE_PORT     PORTC
 
 //* FAN PIN *//
-#define FAN_ONE_PIN    pin1
-#define FAN_TWO_PIN    pin1
-#define FAN_THREE_PIN  pin1
+#define FAN_ONE_PIN    GPIO_PIN0
+#define FAN_TWO_PIN    GPIO_PIN0
+#define FAN_THREE_PIN  GPIO_PIN0
 
 //*FANS*//
 #define FAN_ONE     0
