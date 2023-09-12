@@ -1,6 +1,9 @@
 //#include "app.h"
-#include "../MCAL/ADC/ADC_DRIVER.h"
-#include "../MCAL/GPIO/MCAL_GPIO.h"
+#include <stdio.h>
+#include "../HAL/LCD/lcd.h"
+#include "../HAL/LM35/LM35.h"
+#define degree_sysmbol 0xdf
+u8 Temperature[10];
 int main(){
 /*   intialize the system
 app_init();
@@ -11,14 +14,13 @@ while(1)
     run_program();
  }
  return 0;*/  
-  u8 x;
-  ADC_void_init(V_AVCC,PRESCALER_64);
-  gpio_PORT_direction_intialization(GPIO_PORTBID,0xff);
+  
+  HLCD_INIT();
   while (1)
   {
-    ADC_void_startConversion(channel_0);
-    x = ADC_u16_read();
-    gpio_PORT_write_value(GPIO_PORTBID,(x<<8));
+    
+    LCD_Send_Number_Pos(LM35_READ(),ROW1,5);
+    HLCD_voidCLRScreen();
   }
   
 }
