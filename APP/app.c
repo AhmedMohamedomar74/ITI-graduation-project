@@ -1,16 +1,22 @@
 #include "app.h"
 extern keypad_t keypad_1;
 
-u8 key_val = 255;       // value of key you press
-u8 flagin = 0;          /// to check if passward correct it's value will be 1 else the passward is wrong
-u8 check_pass[20];      // passward the user enter
-u8 number_digit = 0;    // to know how many number user enter
-u8 index_passward = 0;  ////// using as index of check_password array
-u8 number_of_users = 2; // to know how many user in the system
-u8 index_of_user = 0;   // to know which user in system that enter the password
+#define index_of_owner     1       // Give a value to the owner to see if he entered
+#define index_of_employee  2       // Give a value to the owner to see if he entered
+#define index_of_no_one    3       // Give a value to indicate that a foreigner tries to enter
+#define password_length    4       //fixed length to the password
 
-u8 i = 0;            /// to check if i enter wrong passward more than 3 times or not
-#define password_length 4 ////fixed length to the passward
+
+/********************************Global Variables*********************************/
+uint8_t key_val = 255;       // value of key you press
+uint8_t flagin = 0;          /// to check if password correct it's value will be 1 else the passward is wrong
+uint8_t check_pass[20];      // password the user enter
+uint8_t number_digit = 0;    // to know how many number user enter
+uint8_t index_passward = 0;  ////// using as index of check_password array
+uint8_t number_of_users = 2; // to know how many user in the system
+uint8_t index_of_user = 0;   // to know which user in system that enter the password
+uint8_t i = 0;            /// to check if i enter wrong passward more than 3 times or not
+uint8_t someone_entered =0;  // flag if someone entered the password correctly
 user_t users[2];          /// store array of users to store all data in it
 
 /************ API*************
@@ -21,6 +27,8 @@ user_t users[2];          /// store array of users to store all data in it
  */
 void app_init(void)
 {
+	/***intialize UART***/
+	UART_void_Init_Master(UBRR_Val);
     /**intialize lcd***/
     HLCD_INIT();
     /*intialze keypad*/
@@ -44,19 +52,19 @@ void app_init(void)
 /************ API*************
  *check if passward the user set it founded in the system or not
  */
-u8 Cheack_Password(u8 x)
+uint8_t Cheack_Password(uint8_t x)
 {
     /* if passward less than or more than right length of passward retrun false */
     if ((number_digit<4) | (number_digit> 4))
         return 0;
     /*intialize variable ret to know hoe many numbers in password same if all password same will return true*/
-    u8 ret = 0;
+    uint8_t ret = 0;
     /*will looping to compare with all users in my system */
-    for (u8 n = 0; n < number_of_users; n++)
+    for (uint8_t n = 0; n < number_of_users; n++)
     {
         ret = 0;
         /*will looping to check every element of user[n] paswword and the password that entered in the screen */
-        for (u8 counter = 0; counter < x - 1; counter++)
+        for (uint8_t counter = 0; counter < x - 1; counter++)
         {
             /*if element the same increment ret by one */
             if (users[n].password[counter] == check_pass[counter])
@@ -140,6 +148,7 @@ void run_program(void)
         if (Cheack_Password(password_length))
         {
             flagin = 1;
+            someone_entered = 1; // to use it in sending function
             break;
         }
         /* increment i by one to improve that the user use one trial to enter to the system */
@@ -154,7 +163,7 @@ void run_program(void)
         }
     }
     /*
-    if user spend his three trial to guess the coorect password
+    if user spend his three trial to guess the correct password
     or know it from first time it will enter this if body
     */
     if (flagin == 1)
@@ -195,3 +204,36 @@ void run_program(void)
         _delay_ms(200);
     }
 }
+
+/*
+ * Prototype   : void transmit_who_entered(void)
+ * Description : check who entered and send it to receiving MC via communication protocol
+ * Arguments   : void
+ * return      : void
+ */
+void transmit_who_entered(void)
+{
+	/*check if password is correct and person will enter*/
+	if(someone_entered == 1)
+	{
+		/*check the index of user to know how entered*/
+		if (index_of_user == index_of_owner)
+		{
+			UART_void_SendData(index_of_owner);
+		}
+		if (index_of_user == index_of_employee)
+		{
+			UART_void_SendData(index_of_employee);
+		}
+	}
+	else
+	{
+		if (i == 3) // someone entered wrong password 3 times
+		{
+			UART_void_SendData(index_of_no_one);
+		}
+	}
+
+
+}
+
