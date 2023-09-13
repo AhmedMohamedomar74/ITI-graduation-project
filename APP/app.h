@@ -1,7 +1,10 @@
 #ifndef  _APP_H_ 
 #define _APP_H_
+#define F_CPU 1000000UL
+#define UBRR_Val 12
 #include "../HAL/KEYPAD/keypad.h"
 #include "../HAL/LCD/lcd.h"
+#include "../MCAL/UART/UART.h"
 #include <stdint.h>
 #include <util/delay.h>
 #include <string.h>
@@ -16,5 +19,13 @@ uint8_t Cheack_Password(uint8_t n);
 void set_passward();
 
 void run_program(void);
+
+/*
+ * Prototype   : void transmit_who_entered(void)
+ * Description : check who entered and send it to receiving MC via communication protocol
+ * Arguments   : void
+ * return      : void
+ */
+void transmit_who_entered(void);
 
 #endif // ! _APP_H_ 
