@@ -41,7 +41,3 @@ This project was developed by a team of individuals as part of the ITI training 
 - [Rawan Magdy Ahmed](https://github.com/RawanMagdyAhmed)
 - [Marwa Rezq](https://github.com/MarwaRezq)
 - [Hagar Hassan](https://github.com/hagarhassan2001)
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
